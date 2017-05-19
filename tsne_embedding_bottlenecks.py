@@ -6,7 +6,7 @@ import re
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from sklearn.manifold import TSNE
 
-def imscatter(x, y, image, ax=None, zoom=1):
+def imscatter(x, y, image, ax=None, zoom=1.0):
     image_filename = re.search(".*/(.*/.*).txt", image).group(1)
     if ax is None:
         ax = plt.gca()
@@ -27,7 +27,7 @@ fig, ax = plt.subplots()
 
 artists = []
 for file, tsneVec in zip(files, tsneVecs):
-    imscatter(tsneVec[0], tsneVec[1], file, zoom=0.1, ax=ax)
+    imscatter(tsneVec[0], tsneVec[1], file, zoom=0.2, ax=ax)
 
 ax.update_datalim(numpy.column_stack([tsneVecs[:, 0], tsneVecs[:, 1]]))
 ax.autoscale()
